@@ -6,10 +6,12 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfi
 import { auth } from "../utils/firebase"
 import {useNavigate} from "react-router-dom"
 import bkgImg from '../assets/shopping-3407232_1280.jpg'
+import GeneratePassword from './GeneratePassword';
 
 const Login = () => {
     const [isSignIn, setisSignIn] = useState(true);
     const [isErrmsg, setisErrmsg] = useState(null);
+    const [generatePassword,setgeneratePassword] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const email = useRef();
@@ -67,8 +69,12 @@ const Login = () => {
 
         }
     }
+    const openGeneratePassword = ()=>{
+        setgeneratePassword(true);
+    }
     return (
-        <div className='flex h-screen w-screen'>
+        <>
+        <div className='flex h-screen w-screen '>
             <div className='w-3/4 bg-pink-200'>
                <img className="h-screen" src={bkgImg} alt="img" />
             </div>
@@ -79,7 +85,7 @@ const Login = () => {
                     <input ref={email} type='email' placeholder='Enter email' className='w-full p-3 my-3 rounded-md' />
                     {!isSignIn && <input type="Number" placeholder="Enter Mobile Number" className='w-full p-3 my-3 rounded-md' />}
                     <input ref={password} type="password" placeholder={isSignIn? "Enter Password": "Type/Generate Password"} className='w-full p-3 rounded-md' />
-                    {!isSignIn && (<div className='py-2 w-full flex justify-end'><button className=' p-1 rounded-lg text-sm font-medium bg-green-800'>Generate Password</button></div>)}
+                    {!isSignIn && (<div className='py-2 w-full flex justify-end'><button onClick={openGeneratePassword} className=' p-1 rounded-lg text-sm font-medium bg-green-800'>Generate Password</button></div>)}
                     <button onClick={handleSignIn} className='w-full p-3 my-8 rounded-lg bg-blue-200'> {!isSignIn ? "Sign Up " : "Sign In"}</button>
                     {isErrmsg && <span className='text-red-800 font-bold text-sm'>{isErrmsg}</span>}
                     <div className='flex justify-between'>
@@ -90,6 +96,11 @@ const Login = () => {
                 </form>
             </div>
         </div>
+       {generatePassword && 
+       <div className='absolute top-0 w-screen h-screen bg-blue-200 '>
+        <GeneratePassword setgeneratePassword={setgeneratePassword}/>
+      </div>}
+        </>
     )
 }
 

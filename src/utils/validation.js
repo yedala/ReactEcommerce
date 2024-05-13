@@ -7,4 +7,5 @@ const validation = (email,password)=>{
     if(!passwordValid)return 'Password is not valid'
     return null;
 }
+
 export default validation
