@@ -7,9 +7,9 @@ import Orders from "./Orders"
 import Cart from "./Cart"
 import Header from './Header'
 import { useDispatch, useSelector } from 'react-redux';
+import Initial from './Initial'
 
 const Body = () => {
-   const user = useSelector(store => store?.user?.userData) || null;
    const appRoutes = createBrowserRouter([
     {
       path:"/",
@@ -34,7 +34,7 @@ const Body = () => {
    ])
   return (
     <>
-    {user && <Header/> }
+    <Initial />
     <RouterProvider router={appRoutes} />
     </>
   

@@ -10,7 +10,7 @@ const userSlice = createSlice({
         addUserData: (state,action)=>{
             state.userData = action.payload;
         },
-        removeUserData: (state,action)=>{
+        removeUserData: ()=>{
             return {theme:'light',userData:null};
         },
         updateTheme: (state,action)=>{

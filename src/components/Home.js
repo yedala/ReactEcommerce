@@ -5,6 +5,7 @@ import MCCHomeCards from './MCCHomeCards'
 const Home = () => {
   return (
     <div>
+        <Header />
         <MCCHomeCards />
     </div>
   )

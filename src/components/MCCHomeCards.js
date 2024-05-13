@@ -2,7 +2,9 @@ import React from 'react'
 
 const MCCHomeCards = () => {
   return (
-    <div>MCCHomeCards</div>
+    <div className='p-4'>
+      MCCHomeCards
+    </div>
   )
 }
 
