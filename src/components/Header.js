@@ -20,13 +20,25 @@ const Header = () => {
       // An error happened.
     });
   }
+  const handleOrders = ()=>{
+    navigate("/orders");
+  }
+  const handleCart = ()=>{
+    navigate("/cart");
+  }
+  const handleAccount=()=>{
+    navigate("/account")
+  }
+  const handleHome=()=>{
+    navigate("/home")
+  }
   return (
     <div className='flex justify-between w-screen p-2 bg-sky-700 '>
-      <img className='w-7' src={LOGO} alt="logo" />
+      <img onClick={handleHome} className='w-7' src={LOGO} alt="logo" />
      <div className='flex px-2'>
-     <p className='px-3 font-bold text-sm'>Hello{user?.displayName}</p>
-      <p className='px-3 font-bold text-sm'>Orders</p>
-      <img src={cart} alt="Cart" className='w-6' />
+     <p onClick={handleAccount} className='px-3 font-bold text-sm'>Hello{user?.displayName}</p>
+      <p className='px-3 font-bold text-sm' onClick={handleOrders}>Orders</p>
+      <img onClick={handleCart} src={cart} alt="Cart" className='w-6' />
       <p className='px-3 font-bold text-sm' onClick={LogOut}>SignOut</p>
      </div>
     </div>

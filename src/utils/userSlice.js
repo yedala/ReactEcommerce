@@ -5,6 +5,7 @@ const userSlice = createSlice({
     initialState:{
         theme:'light',
         userData:null,
+        
     },
     reducers:{
         addUserData: (state,action)=>{
@@ -16,6 +17,7 @@ const userSlice = createSlice({
         updateTheme: (state,action)=>{
             state.theme = action.payload;
         }
+
     }
 });
 export const {addUserData, removeUserData,updateTheme} = userSlice.actions;

@@ -1,8 +1,11 @@
 import React from 'react'
+import Header from './Header'
 
 const Cart = () => {
   return (
-    <div>cart</div>
+    <div>
+      <Header/>
+      cart</div>
   )
 }
 

@@ -1,8 +1,12 @@
 import React from 'react'
+import Header from './Header'
 
 const AccountSettings = () => {
   return (
-    <div>AccountSettings</div>
+    <div>
+      <Header/>
+      AccountSettings
+      </div>
   )
 }
 

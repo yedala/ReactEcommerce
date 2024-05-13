@@ -31,7 +31,7 @@ const Login = () => {
                         displayName: name.current.value , photoURL: "https://example.com/jane-q-user/profile.jpg"
                     }).then(() => {
                         const { uid, email, displayName } = user;
-                        dispatch(addUserData({ id: uid, email: email, displayName: displayName }));
+                        dispatch(addUserData({ id: uid, email: email, displayName: displayName,isAuthenticated: true }));
                         navigate("/home")
 
                     }).catch((error) => {
@@ -55,7 +55,7 @@ const Login = () => {
                     // Signed in 
                     const user = userCredential.user;
                     const { uid, email, displaName } = user;
-                    dispatch(addUserData({ id: uid, email: email, displaName: displaName }));
+                    dispatch(addUserData({ id: uid, email: email, displaName: displaName,isAuthenticated: true }));
                     navigate('/home')
                     // ...
                 })
@@ -78,7 +78,8 @@ const Login = () => {
                     {!isSignIn && <input ref={name} type="text" placeholder='Enter Name:' className='w-full p-3 my-3 rounded-md' />}
                     <input ref={email} type='email' placeholder='Enter email' className='w-full p-3 my-3 rounded-md' />
                     {!isSignIn && <input type="Number" placeholder="Enter Mobile Number" className='w-full p-3 my-3 rounded-md' />}
-                    <input ref={password} type="password" placeholder='Enter Password' className='w-full p-3 rounded-md' />
+                    <input ref={password} type="password" placeholder={isSignIn? "Enter Password": "Type/Generate Password"} className='w-full p-3 rounded-md' />
+                    {!isSignIn && (<div className='py-2 w-full flex justify-end'><button className=' p-1 rounded-lg text-sm font-medium bg-green-800'>Generate Password</button></div>)}
                     <button onClick={handleSignIn} className='w-full p-3 my-8 rounded-lg bg-blue-200'> {!isSignIn ? "Sign Up " : "Sign In"}</button>
                     {isErrmsg && <span className='text-red-800 font-bold text-sm'>{isErrmsg}</span>}
                     <div className='flex justify-between'>

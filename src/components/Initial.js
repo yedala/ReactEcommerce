@@ -15,7 +15,7 @@ const Initial = () => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
         if (user) {
             const { uid, email, displayName } = user;
-            dispatch(addUserData({ uid: uid, email: email, displayName: displayName }));
+            dispatch(addUserData({ uid: uid, email: email, displayName: displayName,isAuthenticated: true }));
 
         } else {
             
