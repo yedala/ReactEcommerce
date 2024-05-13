@@ -5,6 +5,7 @@ import { addUserData } from '../utils/userSlice';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase"
 import {useNavigate} from "react-router-dom"
+import bkgImg from '../assets/shopping-3407232_1280.jpg'
 
 const Login = () => {
     const [isSignIn, setisSignIn] = useState(true);
@@ -69,9 +70,9 @@ const Login = () => {
     return (
         <div className='flex h-screen w-screen'>
             <div className='w-3/4 bg-pink-200'>
-                <p>img</p>
+               <img className="h-screen" src={bkgImg} alt="img" />
             </div>
-            <div className='w-2/4 p-32 bg-blue-300  '>
+            <div className='w-2/4 p-32 bg-blue-100  '>
                 <form onClick={(e) => e.preventDefault()}  >
                     <p className=' font-bold text-3xl my-6 '>{isSignIn ? "Sign In" : "Sign Up"}</p>
                     {!isSignIn && <input ref={name} type="text" placeholder='Enter Name:' className='w-full p-3 my-3 rounded-md' />}
