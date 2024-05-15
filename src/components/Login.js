@@ -7,9 +7,12 @@ import { auth } from "../utils/firebase"
 import {useNavigate} from "react-router-dom"
 import bkgImg from '../assets/shopping-3407232_1280.jpg'
 import GeneratePassword from './GeneratePassword';
+import Otp from './Otp';
+import MobileSignIn from './MobileSignIn';
 
 const Login = () => {
     const [isSignIn, setisSignIn] = useState(true);
+    const [mobileSignIn,setMobileSignIn]= useState(false);
     const [isErrmsg, setisErrmsg] = useState(null);
     const [generatePassword,setgeneratePassword] = useState(false);
     const navigate = useNavigate();
@@ -21,6 +24,7 @@ const Login = () => {
         setisSignIn(!isSignIn);
     }
     const handleSignIn = () => {
+        
         const err = validation(email.current.value, password.current.value);
         setisErrmsg(err);
         if (err) return;
@@ -72,6 +76,9 @@ const Login = () => {
     const openGeneratePassword = ()=>{
         setgeneratePassword(true);
     }
+    const handleMobile = ()=>{
+        setMobileSignIn(!mobileSignIn);
+    }
     return (
         <>
         <div className='flex h-screen w-screen '>
@@ -82,14 +89,17 @@ const Login = () => {
                 <form onClick={(e) => e.preventDefault()}  >
                     <p className=' font-bold text-3xl my-6 '>{isSignIn ? "Sign In" : "Sign Up"}</p>
                     {!isSignIn && <input ref={name} type="text" placeholder='Enter Name:' className='w-full p-3 my-3 rounded-md' />}
-                    <input ref={email} type='email' placeholder='Enter email' className='w-full p-3 my-3 rounded-md' />
                     {!isSignIn && <input type="Number" placeholder="Enter Mobile Number" className='w-full p-3 my-3 rounded-md' />}
-                    <input ref={password} type="password" placeholder={isSignIn? "Enter Password": "Type/Generate Password"} className='w-full p-3 rounded-md' />
+
+                    {!mobileSignIn && <input ref={email} type='email' placeholder='Enter email' className='w-full p-3 my-3 rounded-md' />}
+                    {!mobileSignIn && <input ref={password} type="password" placeholder={isSignIn? "Enter Password": "Type/Generate Password"} className='w-full p-3 rounded-md' />}
+                    {mobileSignIn && <MobileSignIn signIn={handleSignIn} />}
+
                     {!isSignIn && (<div className='py-2 w-full flex justify-end'><button onClick={openGeneratePassword} className=' p-1 rounded-lg text-sm font-medium bg-green-800'>Generate Password</button></div>)}
                     <button onClick={handleSignIn} className='w-full p-3 my-8 rounded-lg bg-blue-200'> {!isSignIn ? "Sign Up " : "Sign In"}</button>
                     {isErrmsg && <span className='text-red-800 font-bold text-sm'>{isErrmsg}</span>}
                     <div className='flex justify-between'>
-                        <p className='text-gray cursor-pointer my-3'>Sign in Using Mobile</p>
+                        { isSignIn && <p className='text-gray cursor-pointer my-3' onClick={handleMobile}  >{!mobileSignIn ? 'Sign in Using Mobile' : 'Sign in Using Email'}</p>}
                         <p className='text-gray cursor-pointer my-3' onClick={changeSignIn}>{isSignIn ? "SignUp " : "SignIn"}</p>
                     </div>
 
